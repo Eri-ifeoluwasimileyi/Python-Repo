@@ -18,7 +18,7 @@ for number in range(number_of_student):
 
 		highest_student_name = highest_student_name + " and " + student_name
 
-if number <= 0:
+if number_of_student <= 0:
 	print('Invalid input, Enter a valid input!')
 else:
 	print(f'The student with the highest score is: {highest_student_name} with the score {largest_number}')
