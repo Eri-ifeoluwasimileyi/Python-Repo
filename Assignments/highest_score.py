@@ -23,4 +23,4 @@ if number <= 0:
 else:
 	print(f'The student with the highest score is: {highest_student_name} with the score {largest_number}')
 	
-	#print(f'The student with the highest score is: {highest_student_name}')	
+		
