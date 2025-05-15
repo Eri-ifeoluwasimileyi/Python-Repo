@@ -5,8 +5,8 @@ def sum_of_digit(number):
 	if number < 1 or number > 10000:
 		return('Invalid input,Try Again')
 	
-	if number > 1 and number <= 10000:
-
+	else:
+		number > 1 and number <= 10000
 
 		while number != 0:
 		
