@@ -1662,30 +1662,4 @@ while user_input1 != 0:
 
 		case _:
 			default: print("Invalid input, Try Again!.");
-
-
-
-					
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			
-			
-		
-
 	
