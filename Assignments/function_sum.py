@@ -7,7 +7,10 @@ def sum_of_digit(number):
 	
 	else:
 		number > 1 and number <= 10000
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3d3e67fd99c31778d0fa34cae1d274f35f5eb1bd
 
 		while number != 0:
 		
