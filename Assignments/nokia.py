@@ -485,10 +485,3 @@ match(customer_choice1):
 			
 	case _: 
 		default: print("Switched off!!!")
-
-
-			
-
-		
-				
-
