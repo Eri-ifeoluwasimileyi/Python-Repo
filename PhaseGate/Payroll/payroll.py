@@ -40,58 +40,62 @@ def check_amount(amount):
 
 
 
-def create_payroll(employees, name, hours, rate, gross, federal, state, total, pay):
-
-	employees[name] = {'Employee name': name, 'hours worked': hours, 'pay rate': rate, 'gross pay': gross, 'Deduction':' ', 'federal withholding': federal, 'state withholding': state, 'Total Deduction': total, 'Net pay': pay}
+def create_payroll(employees, name, hours, rate, federal, state):
 
 
-	if name not in employees:
-		return "Employee not found"
+	hours = float(hours)
 
-	elif name in employees:
-		employee[name]['Employee name'] = name
+	rate = float(rate)
+
+	federal = float(federal)
+
+	state = float(state)
 
 
-	elif hours <= 0 or hours > 160:
+	employees[name] = {'Employee name': name, 'hours worked': hours, 'pay rate': rate, 'gross pay': 0, 'Deduction':' ', 'federal withholding': 0, 'state withholding': 0, 'Total Deduction': 0, 'Net pay': 0}
+
+
+	if hours <= 0 or hours > 160:
 		return "dick that's not right"
 
 	employees[name]['hours worked'] = hours
 
 
-
-	if name not in employees:
-		return "Employee not found"
-
-	elif rate <= 0:
+	if rate <= 0:
 		return "dick that's not right, pay me well"
 
 	employees[name]['Pay rate'] = rate
 
 
-	employees[name]['gross pay'] = rate * hours
+	gross = rate * hours
+
+	employees[name]['gross pay'] = gross
 
 
-
-	if name not in employees:
-		return "Employee not found"
-
-	elif federal <= 0 or federal > 100:
+	if federal <= 0 or federal > 100:
 		return 'invalid input'
 
-	employees[name]['federal withholding'] = gross * federal / 100
+	fed_tax = gross * federal / 100
+
+	employees[name]['federal withholding'] = fed_tax
 	
-	if name not in employees:
-		return "Employee not found"
 
-	elif state <= 0 or state > 100:
+	if state <= 0 or state > 100:
 		return 'invalid input'
 
-	employees[name]['state witholding'] = gross * state / 100
+	state_tax = gross * state / 100
+
+	employees[name]['state witholding'] = state_tax
 
 
-	employees[name]['Total Deduction'] = federal + state
+	total = federal + state
 
-	employees[name]['Net pay'] = gross + total
+	employees[name]['Total Deduction'] = total
+
+
+	net_pay = gross - total
+
+	employees[name]['Net pay'] = net_pay
 
 	return f'Employee payroll added.'
 

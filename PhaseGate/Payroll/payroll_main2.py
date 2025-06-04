@@ -1,90 +1,129 @@
-import payroll
-from payroll import *
-employees = {}
+def check_name_validity(name):
 
-while True:
-	print("""
-	SK Payroll System
+	new_name = name.replace(' ', '')
 
-	1. Add employee payroll
+	if name == '':
 
-	2. View all payrolls")
+		return "Name cannot be empty"
 
-	3. Exit
-		""")
+	elif name.isspace():
 
-	choice = input("Enter your choice (1-3): ")
+		return "Name cannot be empty"
 
-	if choice == '1':
+	elif new_name.isalpha():
 
-		name = input("Enter employee name: ")
-
-		valid_name = check_name_validity(name)
-
-		if valid_name != name:
-
-			print(valid_name)
-			continue
-
-		hours = input("Enter hours worked: ")
-
-		hours_valid = check_amount(hours)
-
-		if hours_valid != True:
-			print(hours_valid)
-			continue
-
-		rate = input("Enter pay rate: ")
-
-		rate_valid = check_amount(rate)
-
-		if rate_valid != True:
-			print(rate_valid)
-			continue
-
-		federal = input("Enter federal withholding %: ")
-
-		federal_valid = check_amount(federal)
+		return name
 	
-		if federal_valid != True:
-                	print(federal_valid)
-                	continue
-
-		state = input("Enter state withholding %: ")
-
-		state_valid = check_amount(state)
-
-		if state_valid != True:
-			print(state_valid)
-			continue
+	else: return "Invalid name"
 
 
-		hours = float(hours)
+def check_amount(amount):
 
-		rate = float(rate)
+	if not amount:
 
-		federal = float(federal)
+		return "Amount cannot be empty"
 
-		state = float(state)
+	if amount.isspace():
 
-		gross = hours * rate
+		return "Amount cannot be empty"
 
-		federal_withholding = gross * federal / 100
+	another_amount = amount.replace('.', '', 1)
+
+	if all(number.isdigit() for number in another_amount):
 		
-		state_withholding = gross * state / 100
+		amount = float(amount) 
+			
+		if amount == round(amount, 2): return True
+		else: return "Invalid Amount"
 
-		total_deduction = federal_withholding + state_withholding
+	else: return "Invalid amount"
 
-		net_pay = gross - total_deduction
 
-		print(create_payroll(employees, name, hours, rate, gross, federal_withholding, state_withholding, total_deduction, net_pay))
 
-	elif choice == '2':
-		view_all_payroll(employees)
+def create_payroll(employees, name, hours, rate, gross, federal, state, total, pay):
+
+	employees[name] = {'Employee name': name, 'hours worked': hours, 'pay rate': rate, 'gross pay': gross, 'Deduction':' ', 'federal withholding': federal, 'state withholding': state, 'Total Deduction': total, 'Net pay': pay}
+
+
+	if name not in employees:
+		return "Employee not found"
+
+	elif name in employees:
+		employee[name]['Employee name'] = name
+
+
+	elif hours <= 0 or hours > 160:
+		return "dick that's not right"
+
+	employees[name]['hours worked'] = hours
+
+
+
+	if name not in employees:
+		return "Employee not found"
+
+	elif rate <= 0:
+		return "dick that's not right, pay me well"
+
+	employees[name]['Pay rate'] = rate
+
+
+	employees[name]['gross pay'] = rate * hours
+
+
+
+	if name not in employees:
+		return "Employee not found"
+
+	elif federal <= 0 or federal > 100:
+		return 'invalid input'
+
+	employees[name]['federal withholding'] = gross * federal / 100
 	
-	elif choice == '3':
-		print("Exiting payroll system.")
-		break
+	if name not in employees:
+		return "Employee not found"
+
+	elif state <= 0 or state > 100:
+		return 'invalid input'
+
+	employees[name]['state witholding'] = gross * state / 100
+
+
+	employees[name]['Total Deduction'] = federal + state
+
+	employees[name]['Net pay'] = gross + total
+
+	return f'Employee payroll added.'
+
+
+
+def view_all_payroll(employees):
+
+
+	for name, employee in employees.items():
+
+		for key, value in employee.items():
+
+			print(f'{key}: {value}')
+
+
+
+def update_payroll(employees, update):
+
+	if not update.isdigit():
+		return "invalid input"
+
+	update = int(update)
+
+	if name not in employees:
+		return "Employee not found"
+
+	for index, name in enumerate(employees, 1):
+		if update == index:
+
+			employees.pop(index - 1)
+			return 'update successfully'
+
+
+
 	
-	else:
-		print("Invalid choice. Please select a valid option.")
