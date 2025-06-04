@@ -44,15 +44,12 @@ def create_payroll(employees, name, hours, rate, gross, federal, state, total, p
 
 	employees[name] = {'Employee name': name, 'hours worked': hours, 'pay rate': rate, 'gross pay': gross, 'Deduction':' ', 'federal withholding': federal, 'state withholding': state, 'Total Deduction': total, 'Net pay': pay}
 
-	return f'Employee payroll added.'
-
 
 	if name not in employees:
 		return "Employee not found"
 
 	elif name in employees:
 		employee[name]['Employee name'] = name
-		return f'Employee name: {name}'
 
 
 	elif hours <= 0 or hours > 160:
@@ -60,7 +57,6 @@ def create_payroll(employees, name, hours, rate, gross, federal, state, total, p
 
 	employees[name]['hours worked'] = hours
 
-	return f'Hours Worked: {hours}'
 
 
 	if name not in employees:
@@ -71,11 +67,9 @@ def create_payroll(employees, name, hours, rate, gross, federal, state, total, p
 
 	employees[name]['Pay rate'] = rate
 
-	return f'Pay rate: ${rate}'
 
 	employees[name]['gross pay'] = rate * hours
 
-	return f'Gross pay: ${employees[name]['gross pay']}'
 
 
 	if name not in employees:
@@ -86,8 +80,6 @@ def create_payroll(employees, name, hours, rate, gross, federal, state, total, p
 
 	employees[name]['federal withholding'] = gross * federal / 100
 	
-	return f'Federal Withholding: ${employees[name]['federal withholding']}'
-
 	if name not in employees:
 		return "Employee not found"
 
@@ -95,14 +87,13 @@ def create_payroll(employees, name, hours, rate, gross, federal, state, total, p
 		return 'invalid input'
 
 	employees[name]['state witholding'] = gross * state / 100
-	return f'State Withholding: ${employees[name]['state witholding']}'
+
 
 	employees[name]['Total Deduction'] = federal + state
-	return f'Total Deduction: ${employees[name]['Total Deduction']}'
 
 	employees[name]['Net pay'] = gross + total
-	return f'Net pay: ${employees[name]['Net pay']}'
 
+	return f'Employee payroll added.'
 
 
 
