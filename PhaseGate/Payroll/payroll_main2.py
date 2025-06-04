@@ -3,13 +3,15 @@ from payroll import *
 employees = {}
 
 while True:
-	print("\nPayroll System")
+	print("""
+	SK Payroll System
 
-	print("1. Add employee payroll")
+	1. Add employee payroll
 
-	print("2. View all payrolls")
+	2. View all payrolls")
 
-	print("3. Exit")
+	3. Exit
+		""")
 
 	choice = input("Enter your choice (1-3): ")
 
