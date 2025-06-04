@@ -99,9 +99,12 @@ def create_payroll(employees, name, hours, rate, gross, federal, state, total, p
 
 def view_all_payroll(employees):
 
-	for key, value in employees.items():
 
-		print(f'{key}: {value}')
+	for name, employee in employees.items():
+
+		for key, value in employee.items():
+
+			print(f'{key}: {value}')
 
 
 
