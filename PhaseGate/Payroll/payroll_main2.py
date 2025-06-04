@@ -1,129 +1,74 @@
-def check_name_validity(name):
+import payroll
+from payroll import *
+employees = {}
 
-	new_name = name.replace(' ', '')
+while True:
+	print("""
+	SK Payroll System
 
-	if name == '':
+	1. Add employee payroll
 
-		return "Name cannot be empty"
+	2. View all payrolls
 
-	elif name.isspace():
-
-		return "Name cannot be empty"
-
-	elif new_name.isalpha():
-
-		return name
-	
-	else: return "Invalid name"
-
-
-def check_amount(amount):
-
-	if not amount:
-
-		return "Amount cannot be empty"
-
-	if amount.isspace():
-
-		return "Amount cannot be empty"
-
-	another_amount = amount.replace('.', '', 1)
-
-	if all(number.isdigit() for number in another_amount):
+	3. Exit
 		
-		amount = float(amount) 
-			
-		if amount == round(amount, 2): return True
-		else: return "Invalid Amount"
+		""")
+		
 
-	else: return "Invalid amount"
+	choice = input("Enter your choice (1-3): ")
 
+	if choice == '1':
 
+		name = input("Enter employee name: ")
 
-def create_payroll(employees, name, hours, rate, gross, federal, state, total, pay):
+		valid_name = check_name_validity(name)
 
-	employees[name] = {'Employee name': name, 'hours worked': hours, 'pay rate': rate, 'gross pay': gross, 'Deduction':' ', 'federal withholding': federal, 'state withholding': state, 'Total Deduction': total, 'Net pay': pay}
+		if valid_name != name:
 
+			print(valid_name)
+			continue
 
-	if name not in employees:
-		return "Employee not found"
+		hours = input("Enter hours worked: ")
 
-	elif name in employees:
-		employee[name]['Employee name'] = name
+		hours_valid = check_amount(hours)
 
+		if hours_valid != True:
+			print(hours_valid)
+			continue
 
-	elif hours <= 0 or hours > 160:
-		return "dick that's not right"
+		rate = input("Enter pay rate: ")
 
-	employees[name]['hours worked'] = hours
+		rate_valid = check_amount(rate)
 
+		if rate_valid != True:
+			print(rate_valid)
+			continue
 
+		federal = input("Enter federal withholding %: ")
 
-	if name not in employees:
-		return "Employee not found"
-
-	elif rate <= 0:
-		return "dick that's not right, pay me well"
-
-	employees[name]['Pay rate'] = rate
-
-
-	employees[name]['gross pay'] = rate * hours
-
-
-
-	if name not in employees:
-		return "Employee not found"
-
-	elif federal <= 0 or federal > 100:
-		return 'invalid input'
-
-	employees[name]['federal withholding'] = gross * federal / 100
+		federal_valid = check_amount(federal)
 	
-	if name not in employees:
-		return "Employee not found"
+		if federal_valid != True:
+                	print(federal_valid)
+                	continue
 
-	elif state <= 0 or state > 100:
-		return 'invalid input'
+		state = input("Enter state withholding %: ")
 
-	employees[name]['state witholding'] = gross * state / 100
+		state_valid = check_amount(state)
 
-
-	employees[name]['Total Deduction'] = federal + state
-
-	employees[name]['Net pay'] = gross + total
-
-	return f'Employee payroll added.'
+		if state_valid != True:
+			print(state_valid)
+			continue
 
 
+		print(create_payroll(employees, name, hours, rate, gross, federal_withholding, state_withholding, total_deduction, net_pay))
 
-def view_all_payroll(employees):
-
-
-	for name, employee in employees.items():
-
-		for key, value in employee.items():
-
-			print(f'{key}: {value}')
-
-
-
-def update_payroll(employees, update):
-
-	if not update.isdigit():
-		return "invalid input"
-
-	update = int(update)
-
-	if name not in employees:
-		return "Employee not found"
-
-	for index, name in enumerate(employees, 1):
-		if update == index:
-
-			employees.pop(index - 1)
-			return 'update successfully'
-
-
-
+	elif choice == '2':
+		view_all_payroll(employees)
 	
+	elif choice == '3':
+		print("Exiting payroll system.")
+		break
+	
+	else:
+		print("Invalid choice. Please select a valid option.")
