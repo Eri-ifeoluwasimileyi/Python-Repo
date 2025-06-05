@@ -1,7 +1,7 @@
 def first(check = False):
 
 	if check:
-		count = 2 
+		count = 0 
 
 		while count < 2:
 
