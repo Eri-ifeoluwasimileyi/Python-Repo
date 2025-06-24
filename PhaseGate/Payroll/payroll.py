@@ -1,14 +1,19 @@
-def check_name_validity(name):
+def check_name_validity(employees, name):
 
-	new_name = name.replace(' ', '')
+	if name in employees:
+
+		return "Employee's already exist"
+	
+	new_name = name.replace(' ', '', 1)
 
 	if name == '':
 
-		return "Name cannot be empty"
+		return "this space cannot be empty"
 
 	elif name.isspace():
 
-		return "Name cannot be empty"
+		return "this space cannot be empty"
+
 
 	elif new_name.isalpha():
 
@@ -21,11 +26,11 @@ def check_amount(amount):
 
 	if not amount:
 
-		return "Amount cannot be empty"
+		return "this space cannot be empty"
 
 	if amount.isspace():
 
-		return "Amount cannot be empty"
+		return "this space cannot be empty"
 
 	another_amount = amount.replace('.', '', 1)
 
@@ -34,16 +39,119 @@ def check_amount(amount):
 		amount = float(amount) 
 			
 		if amount == round(amount, 2): return True
-		else: return "Invalid Amount"
+		else: return "Invalid input"
 
-	else: return "Invalid amount"
+	else: return "Invalid input"
+
+
+
+
+def check_hours(hours):
+
+	if not hours:
+
+		return "this space cannot be empty"
+
+	if hours.isspace():
+
+		return "this space cannot be empty"
+
+	another_hours = hours.replace('.', '', 1)
+
+	if all(number.isdigit() for number in another_hours):
+		
+		hours = float(hours)
+
+		if hours <= 0 or hours > 40:
+
+			return "Invalid hours"
+
+		else: return True
+
+	else: return "Invalid hours"
+
+
+
+def check_rate(rate):
+
+	if not rate:
+
+		return "this space cannot be empty"
+
+	if rate.isspace():
+
+		return "this space cannot be empty"
+
+	another_rate = rate.replace('.', '', 1)
+
+	if all(number.isdigit() for number in another_rate):
+		
+		rate = float(rate)
+
+
+		if rate > 0 :
+
+			return True
+
+		else: return "Invalid rate"
+
+	else: return "bitch that's not right, pay me well"
+
+
+
+
+def check_federal(federal):
+
+	if not federal:
+
+		return "this space cannot be empty"
+
+	if federal.isspace():
+
+		return "this space cannot be empty"
+
+	another_federal = federal.replace('.', '', 1)
+
+	if all(number.isdigit() for number in another_federal):
+		
+		federal = float(federal)
+
+		if federal <= 0 or federal > 100:
+			return "Invalid tax"
+			
+		else: return True
+
+	else: return "Invalid tax"
+
+
+def check_state(state):
+
+	if not state:
+
+		return "this space cannot be empty"
+
+	if state.isspace():
+
+		return "this space cannot be empty"
+
+	another_state = state.replace('.', '', 1)
+
+	if all(number.isdigit() for number in another_state):
+		
+		state = float(state)
+
+		if state > 0 or state <= 100:
+			return True
+		else: return "Invalid tax"
+
+	else: return "Invalid tax"
 
 
 
 def create_payroll(employees, name, hours, rate, federal, state):
 
 
-	hours = float(hours)
+	hours = int(hours)
 
 	rate = float(rate)
 
@@ -52,52 +160,41 @@ def create_payroll(employees, name, hours, rate, federal, state):
 	state = float(state)
 
 
-	employees[name] = {'Employee name': name, 'hours worked': hours, 'pay rate': rate, 'gross pay': 0, 'Deduction':' ', 'federal withholding': 0, 'state withholding': 0, 'Total Deduction': 0, 'Net pay': 0}
+	employees[name] = {'Employee name': name, 'Hours worked': 0, 'Pay rate': 0, 'Gross pay': 0, 'Deduction':' ','\tFederal withholding': 0, '\tState withholding': 0, '\tTotal Deduction': 0, 'Net pay': 0}
 
 
-	if hours <= 0 or hours > 160:
-		return "dick that's not right"
 
-	employees[name]['hours worked'] = hours
+	employees[name]['Hours worked'] = hours
 
 
-	if rate <= 0:
-		return "dick that's not right, pay me well"
-
-	employees[name]['Pay rate'] = rate
+	employees[name]['Pay rate'] = f'${rate}'
 
 
-	gross = rate * hours
+	gross = round((rate * hours), 2)
 
-	employees[name]['gross pay'] = gross
+	employees[name]['Gross pay'] = f"${gross}"
 
 
-	if federal <= 0 or federal > 100:
-		return 'invalid input'
+	fed_tax = round((gross * federal / 100), 2)
 
-	fed_tax = gross * federal / 100
-
-	employees[name]['federal withholding'] = fed_tax
+	employees[name]['\tFederal withholding'] = f'${fed_tax}'
 	
 
-	if state <= 0 or state > 100:
-		return 'invalid input'
+	state_tax = round((gross * state / 100), 2)
 
-	state_tax = gross * state / 100
-
-	employees[name]['state witholding'] = state_tax
+	employees[name]['\tState withholding'] = f'${state_tax}'
 
 
-	total = federal + state
+	total = round((fed_tax + state_tax), 2)
 
-	employees[name]['Total Deduction'] = total
+	employees[name]['\tTotal Deduction'] = f'${total}'
 
 
-	net_pay = gross - total
+	net_pay = round((gross - total), 2)
 
-	employees[name]['Net pay'] = net_pay
+	employees[name]['Net pay'] = f'${net_pay}'
 
-	return f'Employee payroll added.'
+	return True
 
 
 
@@ -112,21 +209,14 @@ def view_all_payroll(employees):
 
 
 
-def update_payroll(employees, update):
-
-	if not update.isdigit():
-		return "invalid input"
-
-	update = int(update)
+def update_payroll(employees, name):
 
 	if name not in employees:
 		return "Employee not found"
 
-	for index, name in enumerate(employees, 1):
-		if update == index:
+	employees.pop(name)
+	return True
 
-			employees.pop(index - 1)
-			return 'update successfully'
 
 
 
