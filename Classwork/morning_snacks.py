@@ -4,29 +4,23 @@ print(list[2])
 print()
 
 list = ['red', 'green', 'blue']
-
 list[2] = 'yellow'
-
 print(list)
 print()
+
 list.append('purple')
 print(list)
 print()
 
 list = [1, 2, 3, 4, 5]
-
 list.remove(2)
 print(list)
 print()
 
 list = ['Alice', 'Bob', 'Charlie']
-
 new_list = []
-
 for items in list:
-
 	new_list.append(len(items))
-
 print(new_list)
 print()
 list = [4, 1, 3, 9, 2]
@@ -34,9 +28,8 @@ list.sort()
 print(list)
 print()
 
+
 list = [1, 3, 4, 10, 5, 6, 8]
-
-
 def even(list):
 	new_list = []
 	for number in list:
@@ -50,9 +43,7 @@ print()
 
 list_A = [1, 2, 3]
 list_B = [4, 5, 6]
-
 list_A.extend(list_B)
-
 print(list_A)
 print()
 
