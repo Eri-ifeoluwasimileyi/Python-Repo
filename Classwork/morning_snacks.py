@@ -23,6 +23,8 @@ for items in list:
 	new_list.append(len(items))
 print(new_list)
 print()
+
+
 list = [4, 1, 3, 9, 2]
 list.sort()
 print(list)
