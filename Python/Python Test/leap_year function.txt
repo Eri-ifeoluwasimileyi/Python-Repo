@@ -1,0 +1,121 @@
+leap_year function checks whether a given year is a leap year.
+
+A year is a leap year if:
+
+It is divisible by 4 and not divisible by 100, or
+
+It is divisible by 400
+
+For example:
+
+2000 → leap year (divisible by 400)
+
+1900 → not a leap year (divisible by 100 but not 400)
+
+2024 → leap year (divisible by 4, not by 100)
+
+
+
+check_month function returns the number of days in a given month for a given year.
+
+February (month 2) has:
+
+29 days if it's a leap year
+
+28 otherwise
+
+April, June, September, and November → 30 days
+
+All other months → 31 days
+
+
+
+days function adds added_days to a starting date (day, month, year) and returns the new date.
+
+It loops through months and adjusts the date correctly:
+
+It checks if the total days after adding added_days still fall within the current month.
+
+If yes → simply add and exit the loop.
+
+If no → subtract the remaining days in this month, reset day to 1, and move to the next month.
+
+If the month exceeds 12, it wraps around to January and increments the year.
+
+
+
+
+Input: period_day = 30, month = 1(January), period_year = 2025, days_to_add = 14
+
+date = Jan 30, 2025
+
+Days to add: 5
+
+January has 31 days.
+
+
+Check if period_day + days_to_add<= days_in_month
+
+30 + 5 = 35 
+
+35 > 31, so we cannot add all 5 days in January.
+
+Days left in January from Jan 30 = 31 - 30 + 1 = 2 days (including Jan 30 itself)
+
+So, i add 2 days to reach Jan 31 (the last day of January).
+
+Now, days_to_add = 5 - 2 = 3 days left to add.
+
+Step 5: Move to next month
+
+Set period_day = 1 (start of next month)
+
+month = 2 (February)
+
+year = 2025 (same year because we didn’t go past December)
+
+Step 6: How many days in February 2025?
+Is 2025 a leap year? No (2025 % 4 != 0), so February has 28 days.
+
+Step 7: Can we add all remaining 3 days in February?
+Check if period_day + added_days <= days_in_month
+
+1 + 3 = 4 
+4 <= 28,
+ so we can add all remaining days here.
+
+Step 8: Add remaining 3 days
+New day = 1 + 3 = 4
+
+added_days is now 0 → we are done.
+
+Final result:
+New date: February 4, 2025
+
+Summary:
+You started at Jan 30, 2025 and added 5 days:
+
+2 days took you to Jan 31
+
+Then 3 days into February → February 4, 2025
+
+
+
+
+the asterisk (*) is called the "unpacking operator" in Python.
+
+next_period = (17, 6, 2025)
+
+format_date(*next_period) is the same writing format_date(17, 6, 2025)
+
+So it unpacks the tuple into individual arguments that match the parameters of the function.
+
+
+
+date_tuple = (3, 6, 2025)
+
+# With unpacking
+format_date(*date_tuple)  # becomes format_date(3, 6, 2025)
+
+# Without unpacking — would cause an error
+format_date(date_tuple)   # format_date expects 3 separate arguments, not a tuple

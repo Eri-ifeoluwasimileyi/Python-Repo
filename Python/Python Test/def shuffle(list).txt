@@ -1,0 +1,70 @@
+def shuffle(list):
+
+	length = len(list)
+
+	for index in range(length - 2):
+
+		value = index + 1
+		list[index], list[value] = list[value], list[index]
+
+	return list
+
+
+def questions():
+    quest = [
+        {
+		"question": "What is the capital of France?",
+		"options": ["a) Berlin", "b) London", "c) Paris", "d) Madrid"],
+            "answer": "c) Paris"
+        },
+        {
+            "question": "Which planet is known as the Red Planet?",
+            "options": ["a) Earth", "b) Mars", "c) Jupiter", "d) Venus"],
+            "answer": "b) Mars"
+        },
+        {
+            "question": "What is the largest mammal?",
+            "options": ["a) Elephant", "b) Blue Whale", "c) Giraffe", "d) Hippo"],
+            "answer": "b) Blue Whale"
+	},
+        {
+            "question": "What is the boiling point of water in Celsius?",
+            "options": ["a) 90", "b) 80", "c) 100", "d) 110"],
+            "answer": "c) 100"
+        },
+        {
+            "question": "How many continents are there?",
+            "options": ["a) Five", "b) Six", "c) Seven", "d) Eight"],
+            "answer": "c) Seven"
+        },
+        {
+            "question": "What is the square root of 64?",
+            "options": ["a) 6", "b) 7", "c) 8", "d) 9"],
+            "answer": "c) 8"
+        },
+        {
+            "question": "Who is known as the Father of Computers?",
+            "options": ["a) Alan Turing", "b) Charles Babbage", "c) Bill Gates", "d) Steve Jobs"],
+            "answer": "b) Charles Babbage"
+        },
+	{   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
