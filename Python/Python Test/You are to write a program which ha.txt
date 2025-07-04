@@ -1,8 +1,0 @@
-You are to write a program which have a collection of questions like questionaire, and user answer those questions with options. 
-Give the user two trials in each question they failed to answer correctly. The collectiion of the questions atr 10 in size. 
-Each questions have about four options.
-The user is to put in the question they want from 1-10
-The questions should be shuffled, meaning not coming in the same format always. Their result after the questions should display their scores and also the ones they miss display the correct answers and the questions. 
-The program should have the question already
-
-Using python, dont use in-built function. i need the function and the main

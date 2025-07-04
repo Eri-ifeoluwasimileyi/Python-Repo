@@ -1,1 +1,0 @@
-print('Congratulations! Your grade of, ''  earns you an A in this course')

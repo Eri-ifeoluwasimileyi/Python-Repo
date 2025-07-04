@@ -1,1 +1,0 @@
-The data type was not specified(i.e, int, float)
